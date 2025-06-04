@@ -1,0 +1,33 @@
+name: Daily Tech Newsletter
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # Every day at 6 AM UTC
+  workflow_dispatch:     # Also lets you run it manually
+
+jobs:
+  send-newsletter:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run newsletter script
+        env:
+          NEWSAPI_KEY: ${{ secrets.NEWSAPI_KEY }}
+          EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          EMAIL_RECEIVER: ${{ secrets.EMAIL_RECEIVER }}
+        run: |
+          python newsletter.py
