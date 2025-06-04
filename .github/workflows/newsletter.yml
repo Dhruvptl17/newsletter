@@ -2,8 +2,8 @@ name: Daily Tech Newsletter
 
 on:
   schedule:
-    - cron: '16 14 * * *'  # Every day at 6 AM CST
-  workflow_dispatch:     # Also lets you run it manually
+    - cron: '21 14 * * *'  # Every day at 9:20 AM CST (14:20 UTC)
+  workflow_dispatch:       # Allows manual trigger
 
 jobs:
   send-newsletter:
