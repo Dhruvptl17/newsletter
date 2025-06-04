@@ -2,7 +2,7 @@ name: Daily Tech Newsletter
 
 on:
   schedule:
-    - cron: '21 14 * * *'  # Every day at 9:20 AM CST (14:20 UTC)
+    - cron: '/2 * * * *'  # Every day at 9:20 AM CST (14:20 UTC)
   workflow_dispatch:       # Allows manual trigger
 
 jobs:
